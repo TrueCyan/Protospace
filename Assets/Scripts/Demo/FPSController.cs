@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -33,6 +34,8 @@ public class FPSController : PortalTraveller {
     bool jumping;
     float lastGroundedTime;
     bool disabled;
+
+    private Vector3 upVector = Vector3.up;
 
     void Start () {
         cam = Camera.main;
@@ -72,6 +75,7 @@ public class FPSController : PortalTraveller {
 
         float currentSpeed = (Input.GetKey (KeyCode.LeftShift)) ? runSpeed : walkSpeed;
         Vector3 targetVelocity = worldInputDir * currentSpeed;
+
         velocity = Vector3.SmoothDamp (velocity, targetVelocity, ref smoothV, smoothMoveTime);
 
         verticalVelocity -= gravity * Time.deltaTime;
@@ -82,6 +86,21 @@ public class FPSController : PortalTraveller {
             jumping = false;
             lastGroundedTime = Time.time;
             verticalVelocity = 0;
+
+            if ((Vector3.up - upVector).magnitude > 0.001f)
+            {
+                var prevUp = upVector;
+                upVector = Vector3.up;
+                var qLook = Quaternion.LookRotation(transform.up, Vector3.up);
+                var qRot = Quaternion.FromToRotation(transform.up, Vector3.up);
+                float angle;
+                qRot.ToAngleAxis(out angle,out _);
+                yaw = qLook.eulerAngles.y;
+                smoothYaw = yaw;
+                transform.eulerAngles = upVector * smoothYaw;
+                pitch = Mathf.Min(pitchMinMax.y, pitch + angle);
+                smoothPitch = pitch;
+            }
         }
 
         if (Input.GetKeyDown (KeyCode.Space)) {
@@ -105,16 +124,20 @@ public class FPSController : PortalTraveller {
         yaw += mX * mouseSensitivity;
         pitch -= mY * mouseSensitivity;
         pitch = Mathf.Clamp (pitch, pitchMinMax.x, pitchMinMax.y);
+        var prev = smoothYaw;
         smoothPitch = Mathf.SmoothDampAngle (smoothPitch, pitch, ref pitchSmoothV, rotationSmoothTime);
         smoothYaw = Mathf.SmoothDampAngle (smoothYaw, yaw, ref yawSmoothV, rotationSmoothTime);
 
-        transform.eulerAngles = Vector3.up * smoothYaw;
+        transform.Rotate(upVector, smoothYaw - prev, Space.World);
         cam.transform.localEulerAngles = Vector3.right * smoothPitch;
-
+        
     }
 
     public override void Teleport (Transform fromPortal, Transform toPortal, Vector3 pos, Quaternion rot) {
         transform.position = pos;
+        transform.rotation = rot;
+        upVector = transform.up;
+
         var fromScale = fromPortal.lossyScale;
         var toScale = toPortal.lossyScale;
         var deltaScale = new Vector3(toScale.x / fromScale.x, toScale.y / fromScale.y, toScale.z / fromScale.z);
@@ -125,11 +148,10 @@ public class FPSController : PortalTraveller {
         float delta = Mathf.DeltaAngle (smoothYaw, eulerRot.y);
         yaw += delta;
         smoothYaw += delta;
-        transform.eulerAngles = Vector3.up * smoothYaw;
+        //transform.eulerAngles = Vector3.up * smoothYaw;
         velocity = toPortal.TransformVector (fromPortal.InverseTransformVector (velocity));
+        verticalVelocity = velocity.y;
         Physics.SyncTransforms ();
-
-        
     }
 
 }
