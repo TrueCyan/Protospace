@@ -15,7 +15,6 @@ public class Inventory_trigger : MonoBehaviour
             if(Input.GetKey(KeyCode.F)){
                var key_info=col.gameObject.GetComponent<Inventory_key>().info;
                 Trigger(key_info);
-                 Debug.Log("Done");
                  key_count++;
                  press.SetActive(false);
             }
@@ -27,7 +26,6 @@ public class Inventory_trigger : MonoBehaviour
             if(Input.GetKey(KeyCode.F)){
              var door_info=col.gameObject.GetComponent<door_temp>().info;
              Open(door_info);
-             Debug.Log("open");
              key_count=key_count-1;
 
             }
