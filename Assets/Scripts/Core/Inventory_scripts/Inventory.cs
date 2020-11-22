@@ -26,4 +26,19 @@ public class Inventory : MonoBehaviour
         }
         
     }
+    public void deletion(Inventory_door info){
+            info.door_obj.SetActive(false);
+            if(info.door_num==1){
+                    item1.sprite= info.door_img;
+            }
+             if(info.door_num==2){
+                    item2.sprite= info.door_img;
+            }
+             if(info.door_num==3){
+                    item3.sprite= info.door_img;
+            }
+             if(info.door_num==4){
+                    item4.sprite= info.door_img;
+            }
+    }
 }
