@@ -7,12 +7,15 @@ public class Inventory_trigger : MonoBehaviour
     void OnTriggerStay(Collider col){
         
         if(col.gameObject.tag=="key"){
-             press.transform.position=
+            press.SetActive(true);
+             press.transform.position= new Vector3(col.transform.position.x,col.transform.position.y+2,col.transform.position.z);
+             
 
             if(Input.GetKey(KeyCode.Space)){
                var key_info=col.gameObject.GetComponent<Inventory_key>().info;
                 Trigger(key_info);
                  Debug.Log("Done");
+                 press.SetActive(false);
             }
         }
     }
