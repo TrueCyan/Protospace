@@ -477,7 +477,7 @@ GameObject:
   - component: {fileID: 3889861654870113677}
   - component: {fileID: 3889861654870113676}
   m_Layer: 5
-  m_Name: Dialogue_con
+  m_Name: Dialogue_con_hw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -515,7 +515,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1444f74c89c871b46be14b2ffe33438a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Activate: 0
+  Activate: 1
   child: {fileID: 3889861653721511976}
 --- !u!1 &3889861654951669262
 GameObject:
