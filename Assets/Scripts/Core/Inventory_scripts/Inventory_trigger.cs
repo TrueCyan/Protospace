@@ -11,7 +11,7 @@ public class Inventory_trigger : MonoBehaviour
              press.transform.position= new Vector3(col.transform.position.x,col.transform.position.y+2,col.transform.position.z);
              
 
-            if(Input.GetKey(KeyCode.Space)){
+            if(Input.GetKey(KeyCode.F)){
                var key_info=col.gameObject.GetComponent<Inventory_key>().info;
                 Trigger(key_info);
                  Debug.Log("Done");
