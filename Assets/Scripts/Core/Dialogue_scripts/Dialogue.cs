@@ -28,12 +28,12 @@ public class Dialogue : MonoBehaviour
     public void finish(){
         Debug.Log("finish");
         txtSentence.text=string.Empty;
+        txtName.text=string.Empty;
         var systrigger=FindObjectOfType<DialogueTrigger>();
-        if(systrigger.lis.Count!=0){
-           
+        
+       
             systrigger.TriggerAgain();
-            
-        }
+        
         
     }
 }

@@ -16,8 +16,14 @@ public class DialogueTrigger : MonoBehaviour
       sys.Begin(info);
   }
   public void TriggerAgain(){
+   
       if (lis.Count<1 ){
+        Debug.Log(lis.Count);
+        gameObject.GetComponentInParent<Dialogue_activate>().Activate=false;
+        gameObject.SetActive(false);
+        
         return;
+        
       }
        Trigger(lis[0]);
        lis.Remove(lis[0]);
