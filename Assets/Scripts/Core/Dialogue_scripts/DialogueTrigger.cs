@@ -29,8 +29,25 @@ public class DialogueTrigger : MonoBehaviour
        lis.Remove(lis[0]);
   }
   public void TriggerStart(){
+      if(Input.GetKey(KeyCode.Space)){
       if(lis.Count==lis_orisize){
         TriggerAgain();
       }
+      
+      }
+  }
+  public void TriggerNext(){
+
+    if(lis.Count==lis_orisize){TriggerAgain(); return;}
+    
+      if(lis.Count!=lis_orisize){
+        var sys=FindObjectOfType<Dialogue>();
+        sys.Next();
+      }
+  }
+  void Update(){
+    if(Input.GetKeyDown(KeyCode.Space)){
+      TriggerNext();
+    }
   }
 }
