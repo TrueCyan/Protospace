@@ -15,7 +15,7 @@ public class Dialogue : MonoBehaviour
            sentences.Enqueue(sentence);
 
        }
-     
+     Next();
     }
     public void Next(){
         if(sentences.Count==0){

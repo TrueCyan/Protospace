@@ -37,16 +37,17 @@ public class DialogueTrigger : MonoBehaviour
       }
   }
   public void TriggerNext(){
-    if(lis.Count==lis_orisize){return;}
-    if(Input.GetKeyDown(KeyCode.Space)){
+
+    if(lis.Count==lis_orisize){TriggerAgain(); return;}
+    
       if(lis.Count!=lis_orisize){
         var sys=FindObjectOfType<Dialogue>();
         sys.Next();
       }
-    }
   }
   void Update(){
-    TriggerStart();
-    TriggerNext();
+    if(Input.GetKeyDown(KeyCode.Space)){
+      TriggerNext();
+    }
   }
 }
