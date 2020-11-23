@@ -37,6 +37,7 @@ public class DialogueTrigger : MonoBehaviour
       }
   }
   public void TriggerNext(){
+    if(lis.Count==lis_orisize){return;}
     if(Input.GetKeyDown(KeyCode.Space)){
       if(lis.Count!=lis_orisize){
         var sys=FindObjectOfType<Dialogue>();
