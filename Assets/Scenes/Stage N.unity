@@ -33986,7 +33986,17 @@ PrefabInstance:
         type: 3}
       propertyPath: linkedPortal
       value: 
-      objectReference: {fileID: 1354564467}
+      objectReference: {fileID: 1560956463}
+    - target: {fileID: 640809988665015969, guid: a77cd3790dc7bbc40b888c0d3ee8bb46,
+        type: 3}
+      propertyPath: nearClipLimit
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 640809988665015969, guid: a77cd3790dc7bbc40b888c0d3ee8bb46,
+        type: 3}
+      propertyPath: nearClipOffset
+      value: 0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 640809988665015973, guid: a77cd3790dc7bbc40b888c0d3ee8bb46,
         type: 3}
       propertyPath: m_Name
@@ -34015,7 +34025,7 @@ PrefabInstance:
     - target: {fileID: 640809988665015974, guid: a77cd3790dc7bbc40b888c0d3ee8bb46,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 640809988665015974, guid: a77cd3790dc7bbc40b888c0d3ee8bb46,
         type: 3}
@@ -59112,6 +59122,16 @@ PrefabInstance:
       propertyPath: linkedPortal
       value: 
       objectReference: {fileID: 1535501076}
+    - target: {fileID: 640809988665015969, guid: a77cd3790dc7bbc40b888c0d3ee8bb46,
+        type: 3}
+      propertyPath: nearClipLimit
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 640809988665015969, guid: a77cd3790dc7bbc40b888c0d3ee8bb46,
+        type: 3}
+      propertyPath: nearClipOffset
+      value: 0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 640809988665015973, guid: a77cd3790dc7bbc40b888c0d3ee8bb46,
         type: 3}
       propertyPath: m_Name
@@ -59140,7 +59160,7 @@ PrefabInstance:
     - target: {fileID: 640809988665015974, guid: a77cd3790dc7bbc40b888c0d3ee8bb46,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.2
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 640809988665015974, guid: a77cd3790dc7bbc40b888c0d3ee8bb46,
         type: 3}
@@ -79366,6 +79386,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1560366839}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1560956463 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 640809988665015969, guid: a77cd3790dc7bbc40b888c0d3ee8bb46,
+    type: 3}
+  m_PrefabInstance: {fileID: 1179504740}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57b9885b89b6d4fbe92f77801ecc3671, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1561543644
 GameObject:
   m_ObjectHideFlags: 0
