@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-
+#if UNITY_EDITOR
 [ExecuteInEditMode]
 public class RoomMaker : MonoBehaviour
 {
@@ -15,39 +16,87 @@ public class RoomMaker : MonoBehaviour
     public Transform ZPlus;
     public Transform ZMinus;
 
+    public Vector3 Size = Vector3.one;
+
     // Update is called once per frame
     void Update()
     {
+        if (Size.Equals(Vector3.zero))
+        {
+            Size = new Vector3(XPlus.position.x - XMinus.position.x + Thickness * 2,
+                YPlus.position.y - YMinus.position.y + Thickness * 2,
+                ZPlus.position.z - ZMinus.position.z + Thickness * 2);
+        }
         var scale = transform.localScale;
+        if (!scale.Equals(Vector3.one))
+        {
+            return;
+        }
 
         /*
+        var scale = transform.localScale;
 
-        var xpdelta = XPlus.localPosition.x - (0.5f - (Thickness / scale.x / 2));
-        var xmdelta = XMinus.localPosition.x + (0.5f - (Thickness / scale.x / 2));
-        var ypdelta = YPlus.localPosition.y - (0.5f - (Thickness / scale.y / 2));
-        var ymdelta = YMinus.localPosition.y + (0.5f - (Thickness / scale.y / 2));
-        var zpdelta = ZPlus.localPosition.z - (0.5f - (Thickness / scale.z / 2));
-        var zmdelta = ZMinus.localPosition.z + (0.5f - (Thickness / scale.z / 2));
+        if (!scale.Equals(Vector3.one))
+        {
 
-        var delta = new Vector3((xpdelta + xmdelta) / scale.x, (ypdelta + ymdelta) / scale.y,
-            (zpdelta + zmdelta) / scale.z) / 2;
+            Size = scale;
+
+            var tempT = new List<Transform>();
+            var tempP = new List<Vector3>();
+            foreach (Transform t in transform)
+            {
+                if (t.parent == transform && t != XPlus && t != YPlus && t != ZPlus && t != XMinus && t != YMinus && t != ZMinus)
+                {
+                    t.parent = null;
+                    tempT.Add(t);
+                    tempP.Add(t.position);
+                }
+            }
+            transform.localScale = Vector3.one;
+            if (XPlus) XPlus.localRotation = Quaternion.identity;
+            if (XMinus) XMinus.localRotation = Quaternion.identity;
+            if (YPlus) YPlus.localRotation = Quaternion.identity;
+            if (YMinus) YMinus.localRotation = Quaternion.identity;
+            if (ZPlus) ZPlus.localRotation = Quaternion.identity;
+            if (ZMinus) ZMinus.localRotation = Quaternion.identity;
+
+            if (XPlus) XPlus.localScale = new Vector3(Thickness, Size.y, Size.z);
+            if (XMinus) XMinus.localScale = new Vector3(Thickness, Size.y, Size.z);
+            if (YPlus) YPlus.localScale = new Vector3(Size.x, Thickness, Size.z);
+            if (YMinus) YMinus.localScale = new Vector3(Size.x, Thickness, Size.z);
+            if (ZPlus) ZPlus.localScale = new Vector3(Size.x, Size.y, Thickness);
+            if (ZMinus) ZMinus.localScale = new Vector3(Size.x, Size.y, Thickness);
+
+            if (XPlus) XPlus.localPosition = new Vector3(scale.x - Thickness, 0, 0)/2;
+            if (XMinus) XMinus.localPosition = -new Vector3(scale.x - Thickness, 0, 0)/2;
+            if (YPlus) YPlus.localPosition = new Vector3(0, scale.y - Thickness, 0)/2;
+            if (YMinus) YMinus.localPosition = -new Vector3(0, scale.y - Thickness, 0)/2;
+            if (ZPlus) ZPlus.localPosition = new Vector3(0, 0, scale.z - Thickness)/2;
+            if (ZMinus) ZMinus.localPosition = -new Vector3(0, 0, scale.z - Thickness)/2;
+
+
+            for (var i = 0; i < tempT.Count; i++)
+            {
+                var t = tempT[i];
+                t.parent = transform;
+                t.position = tempP[i];
+            }
+        }
         */
-        //transform.position += delta;
-        
 
-        if (XPlus) XPlus.localPosition = new Vector3(0.5f - (Thickness / scale.x / 2), 0, 0);
-        if (XMinus) XMinus.localPosition = -new Vector3(0.5f - (Thickness / scale.x / 2), 0, 0);
-        if (YPlus) YPlus.localPosition = new Vector3(0, 0.5f - (Thickness / scale.y / 2), 0);
-        if (YMinus) YMinus.localPosition = -new Vector3(0, 0.5f - (Thickness / scale.y / 2), 0);
-        if (ZPlus) ZPlus.localPosition = new Vector3(0, 0, 0.5f - (Thickness / scale.z / 2));
-        if (ZMinus) ZMinus.localPosition = -new Vector3(0, 0, 0.5f - (Thickness / scale.z / 2));
+        if (XPlus) XPlus.localScale = new Vector3(Thickness, Size.y, Size.z);
+        if (XMinus) XMinus.localScale = new Vector3(Thickness, Size.y, Size.z);
+        if (YPlus) YPlus.localScale = new Vector3(Size.x, Thickness, Size.z);
+        if (YMinus) YMinus.localScale = new Vector3(Size.x, Thickness, Size.z);
+        if (ZPlus) ZPlus.localScale = new Vector3(Size.x, Size.y, Thickness);
+        if (ZMinus) ZMinus.localScale = new Vector3(Size.x, Size.y, Thickness);
 
-
-        if (XPlus) XPlus.localScale = new Vector3(1, Thickness / scale.x, 1);
-        if (XMinus) XMinus.localScale = new Vector3(1, Thickness / scale.x, 1);
-        if (YPlus) YPlus.localScale = new Vector3(1, Thickness / scale.y, 1);
-        if (YMinus) YMinus.localScale = new Vector3(1, Thickness / scale.y, 1);
-        if (ZPlus) ZPlus.localScale = new Vector3(1, Thickness / scale.z, 1);
-        if (ZMinus) ZMinus.localScale = new Vector3(1, Thickness / scale.z, 1);
+        if (XPlus) XPlus.localPosition = new Vector3(Size.x - Thickness, 0, 0)/2;
+        if (XMinus) XMinus.localPosition = -new Vector3(Size.x - Thickness, 0, 0)/2;
+        if (YPlus) YPlus.localPosition = new Vector3(0, Size.y - Thickness, 0)/2;
+        if (YMinus) YMinus.localPosition = -new Vector3(0, Size.y - Thickness, 0)/2;
+        if (ZPlus) ZPlus.localPosition = new Vector3(0, 0, Size.z - Thickness)/2;
+        if (ZMinus) ZMinus.localPosition = -new Vector3(0, 0, Size.z - Thickness)/2;
     }
 }
+#endif
