@@ -108,7 +108,7 @@ public class FPSController : PortalTraveller {
             float timeSinceLastTouchedGround = Time.time - lastGroundedTime;
             if (controller.isGrounded || (!jumping && timeSinceLastTouchedGround < 0.15f)) {
                 jumping = true;
-                verticalVelocity = jumpForce;
+                verticalVelocity = jumpForce * scale;
             }
         }
 
