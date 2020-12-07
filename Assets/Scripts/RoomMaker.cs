@@ -91,12 +91,12 @@ public class RoomMaker : MonoBehaviour
         if (ZPlus) ZPlus.localScale = new Vector3(Size.x, Size.y, Thickness);
         if (ZMinus) ZMinus.localScale = new Vector3(Size.x, Size.y, Thickness);
 
-        if (XPlus) XPlus.localPosition = new Vector3(Size.x - Thickness, 0, 0)/2;
-        if (XMinus) XMinus.localPosition = -new Vector3(Size.x - Thickness, 0, 0)/2;
-        if (YPlus) YPlus.localPosition = new Vector3(0, Size.y - Thickness, 0)/2;
-        if (YMinus) YMinus.localPosition = -new Vector3(0, Size.y - Thickness, 0)/2;
-        if (ZPlus) ZPlus.localPosition = new Vector3(0, 0, Size.z - Thickness)/2;
-        if (ZMinus) ZMinus.localPosition = -new Vector3(0, 0, Size.z - Thickness)/2;
+        if (XPlus) XPlus.localPosition = new Vector3(Size.x - Thickness + 0.01f, 0, 0) / 2;
+        if (XMinus) XMinus.localPosition = -new Vector3(Size.x - Thickness + 0.01f, 0, 0) / 2;
+        if (YPlus) YPlus.localPosition = new Vector3(0, Size.y - Thickness + 0.01f, 0) / 2;
+        if (YMinus) YMinus.localPosition = -new Vector3(0, Size.y - Thickness + 0.01f, 0) / 2;
+        if (ZPlus) ZPlus.localPosition = new Vector3(0, 0, Size.z - Thickness + 0.01f) / 2;
+        if (ZMinus) ZMinus.localPosition = -new Vector3(0, 0, Size.z - Thickness + 0.01f) / 2;
     }
 }
 #endif
