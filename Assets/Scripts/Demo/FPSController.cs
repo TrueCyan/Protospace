@@ -68,17 +68,18 @@ public class FPSController : PortalTraveller {
             return;
         }
 
+        float scale = transform.localScale.y;
         Vector2 input = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical"));
 
         Vector3 inputDir = new Vector3 (input.x, 0, input.y).normalized;
         Vector3 worldInputDir = transform.TransformDirection (inputDir);
 
         float currentSpeed = (Input.GetKey (KeyCode.LeftShift)) ? runSpeed : walkSpeed;
-        Vector3 targetVelocity = worldInputDir * currentSpeed;
+        Vector3 targetVelocity = worldInputDir * (currentSpeed * scale);
 
         velocity = Vector3.SmoothDamp (velocity, targetVelocity, ref smoothV, smoothMoveTime);
 
-        verticalVelocity -= gravity * Time.deltaTime;
+        verticalVelocity -= gravity * scale * Time.deltaTime;
         velocity = new Vector3 (velocity.x, verticalVelocity, velocity.z);
 
         var flags = controller.Move (velocity * Time.deltaTime);
@@ -107,7 +108,7 @@ public class FPSController : PortalTraveller {
             float timeSinceLastTouchedGround = Time.time - lastGroundedTime;
             if (controller.isGrounded || (!jumping && timeSinceLastTouchedGround < 0.15f)) {
                 jumping = true;
-                verticalVelocity = jumpForce;
+                verticalVelocity = jumpForce * scale;
             }
         }
 
