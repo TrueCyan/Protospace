@@ -263,6 +263,7 @@ MonoBehaviour:
   item2: {fileID: 1326574388}
   item3: {fileID: 2092211169}
   item4: {fileID: 195457579}
+  key_lis: 00000000
 --- !u!54 &13784798
 Rigidbody:
   m_ObjectHideFlags: 0

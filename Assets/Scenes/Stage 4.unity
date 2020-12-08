@@ -278,6 +278,7 @@ MonoBehaviour:
   item2: {fileID: 1326574388}
   item3: {fileID: 2092211169}
   item4: {fileID: 195457579}
+  key_lis: 00000000
 --- !u!54 &13784798
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -12956,7 +12957,7 @@ PrefabInstance:
     - target: {fileID: 1535381019623673784, guid: 5101aee443b6c4e028aae23d799c5fa4,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1535381019623673786, guid: 5101aee443b6c4e028aae23d799c5fa4,
         type: 3}
