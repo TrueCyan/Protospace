@@ -9,5 +9,7 @@ public class Inventory_class
     public int key_num;
     public Sprite key_img;
 
+    public GameObject key_press;
+
     public bool key_activate;
 }
