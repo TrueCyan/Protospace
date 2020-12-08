@@ -31,6 +31,11 @@ public class Inventory_trigger : MonoBehaviour
             }
         }
     }
+    void OnTriggerExit(Collider col){
+        if(col.gameObject.tag=="key"){
+            press.SetActive(false);
+        }
+    }
 
     public void Trigger(Inventory_class info){
         var sys=FindObjectOfType<Inventory>();
