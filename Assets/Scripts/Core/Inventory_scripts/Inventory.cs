@@ -41,15 +41,15 @@ public class Inventory : MonoBehaviour
                     item1.sprite= info.door_img; 
                     info.door_obj.SetActive(false);
             }
-              if(info.door_num==2 && key_lis[1]!=false){
+            if(info.door_num==2 && key_lis[1]!=false){
                     item2.sprite= info.door_img; 
                     info.door_obj.SetActive(false);
             }
-              if(info.door_num==3 && key_lis[2]!=false){
+            if(info.door_num==3 && key_lis[2]!=false){
                     item3.sprite= info.door_img; 
                     info.door_obj.SetActive(false);
             }
-              if(info.door_num==4 && key_lis[3]!=false){
+            if(info.door_num==4 && key_lis[3]!=false){
                     item4.sprite= info.door_img; 
                     info.door_obj.SetActive(false);
             }

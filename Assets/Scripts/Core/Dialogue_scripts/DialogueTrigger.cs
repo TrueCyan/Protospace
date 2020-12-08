@@ -46,6 +46,7 @@ public class DialogueTrigger : MonoBehaviour
       }
   }
   void Update(){
+
     if(Input.GetKeyDown(KeyCode.Space)){
       TriggerNext();
     }

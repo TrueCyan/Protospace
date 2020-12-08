@@ -12,6 +12,7 @@ public class Dialogue_activate : MonoBehaviour
     void Update(){
         if(Activate==true && child.activeSelf==false){
             child.SetActive(true);
+            child.GetComponent<DialogueTrigger>().TriggerAgain();
         }
     }
 }
