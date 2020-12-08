@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Portal : MonoBehaviour {
     [Header ("Main Settings")]
-    public Portal linkedPortal;
+    public Portal linkedPortal = new Portal();
     public MeshRenderer screen;
     public int recursionLimit = 5;
 
@@ -27,6 +27,11 @@ public class Portal : MonoBehaviour {
         trackedTravellers = new List<PortalTraveller> ();
         screenMeshFilter = screen.GetComponent<MeshFilter> ();
         screen.material.SetInt ("displayMask", 1);
+    }
+
+    void Start()
+    {
+        playerCam = Camera.main;
     }
 
     void LateUpdate () {
@@ -77,6 +82,9 @@ public class Portal : MonoBehaviour {
     public void Render () {
 
         // Skip rendering the view from this portal if player is not looking at the linked portal
+        Debug.Log(linkedPortal);
+        Debug.Log(linkedPortal.screen);
+        Debug.Log(playerCam);
         if (!CameraUtility.VisibleFromCamera (linkedPortal.screen, playerCam)) {
             return;
         }

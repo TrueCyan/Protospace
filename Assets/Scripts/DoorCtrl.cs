@@ -31,7 +31,7 @@ public class DoorCtrl : MonoBehaviour
 
         _doorMat.color = DoorColor;
 
-        if (_open) _openRatio = 1;
+        _openRatio = _open ? 1 : 0;
     }
 
     // Update is called once per frame
