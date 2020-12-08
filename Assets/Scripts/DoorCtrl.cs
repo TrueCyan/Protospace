@@ -12,8 +12,8 @@ public class DoorCtrl : MonoBehaviour
     public float OpenWidth;
     public float OpenTime; //second
     public Material DefaultMat;
-    private float _openRatio;
-    [SerializeField]private bool _open;
+    [SerializeField] private float _openRatio;
+    [SerializeField] private bool _open;
 
     private List<Renderer> _doorRenderer = new List<Renderer>();
     private Material _doorMat;
@@ -30,6 +30,8 @@ public class DoorCtrl : MonoBehaviour
         }
 
         _doorMat.color = DoorColor;
+
+        if (_open) _openRatio = 1;
     }
 
     // Update is called once per frame
@@ -53,6 +55,12 @@ public class DoorCtrl : MonoBehaviour
                 if (_openRatio < 0) _openRatio = 0;
             }
 
+            DoorLeft.localPosition = new Vector3(-OpenWidth / 2 * _openRatio, 0);
+            DoorRight.localPosition = new Vector3(OpenWidth / 2 * _openRatio, 0);
+        }
+        else
+        {
+            _openRatio = _open ? 1 : 0;
             DoorLeft.localPosition = new Vector3(-OpenWidth / 2 * _openRatio, 0);
             DoorRight.localPosition = new Vector3(OpenWidth / 2 * _openRatio, 0);
         }
