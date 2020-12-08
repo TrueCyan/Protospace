@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class Dialogue : MonoBehaviour
 {   
     public Text txtName;
@@ -10,7 +11,7 @@ public class Dialogue : MonoBehaviour
     Queue <string> sentences =new Queue<string>();
     public void Begin(Dialogue_info info){
        sentences.Clear();
-    txtName.text=info.name;
+    txtName.text = info.name;
        foreach(var sentence in info.sentences){
            sentences.Enqueue(sentence);
 
