@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class MainCamera : MonoBehaviour {
 
@@ -7,16 +6,6 @@ public class MainCamera : MonoBehaviour {
 
     void Awake () {
         portals = FindObjectsOfType<Portal> ();
-    }
-
-    void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        portals = FindObjectsOfType<Portal>();
     }
 
     void OnPreCull () {
