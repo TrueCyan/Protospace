@@ -76,8 +76,9 @@ public class DoorCtrl : MonoBehaviour
     {
         if (DoorColor.Equals(color))
         {
+            Debug.Log("Open!");
             SetOpen(true);
-            return true;
+            return _open;
         }
 
         return false;
